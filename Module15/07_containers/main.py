@@ -22,3 +22,6 @@ sorting_containers((containers_list))
 
 number = containers_list.index(new_weight_containers)   #вывод номера в списке нового контейнера
 print('Номер нового контейнера в списке:', number + 1)
+
+# TODO применить рекомендации от 03 задания
+

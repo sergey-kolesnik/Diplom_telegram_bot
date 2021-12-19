@@ -6,3 +6,5 @@ for check in range(1, number + 1, 2):
 
 
 print('Список нечетных чисел от 1 до', number,  ':', number_list)
+
+

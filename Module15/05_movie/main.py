@@ -12,3 +12,5 @@ for _ in range(quantity):
         print('Ошибка: фильма', film, 'у нас нет.')
 
 print('Список ваших фильмов:', ' '.join(new_films))
+
+

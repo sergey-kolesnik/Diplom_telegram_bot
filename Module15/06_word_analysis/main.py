@@ -15,3 +15,5 @@ while True:
     unique_symbol_output(word)
 
 
+# TODO применить рекомендации от 03 задания
+

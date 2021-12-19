@@ -18,3 +18,5 @@ for _ in range(buy):
     max_model = max(video_list)
     video_list.remove(max_model)
 print('Новый список список видео карт: ', video_list)
+
+# TODO применить рекомендации от 03 задания
