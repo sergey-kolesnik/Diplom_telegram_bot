@@ -1,8 +1,8 @@
-text_list = input('ведите бегущую строку: ')
+texts = input('ведите бегущую строку: ')
 shift = int(input('Сдвиг: '))
-print('Изначальный текст: ', text_list)
+print('Изначальный текст: ', texts)
 
-text_list = text_list[shift:]+text_list[:shift]
-print('Сдвинутый текст: ', text_list)
+texts = texts[shift:]+texts[:shift]
+print('Сдвинутый текст: ', texts)
 
 
