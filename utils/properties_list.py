@@ -5,8 +5,6 @@ from loguru import logger
 import json
 
 
-
-
 def properties(id_region: int) -> list[dict]:
     """Функция для поиска отелей в конкретно выбранном регионе
     :param id_region: int
@@ -29,6 +27,7 @@ def properties(id_region: int) -> list[dict]:
         "X-RapidAPI-Key": RAPID_API_KEY
     }
 
+    # TODO при лебом гет запросе должне быть передан аргумент timeout и мы его должны отлавливать и логировать
     response = requests.request("GET", url, headers=headers, params=querystring)
 
     suggestions = json.loads(response.text)
@@ -45,6 +44,7 @@ def properties(id_region: int) -> list[dict]:
                                'star': int(index['starRating']),
                                'photo': index['optimizedThumbUrls']['srpDesktop']})
         except KeyError:
+            # TODO заглушек быть нге должно
             pass
     logger.info(data_hotel)
     return data_hotel

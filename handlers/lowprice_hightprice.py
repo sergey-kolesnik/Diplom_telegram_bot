@@ -60,6 +60,7 @@ def check_count_city(message: Message) -> None:
             logger.info(user.hotels_count)
 
         else:
+            # TODO применить рекомендации данные ранее про исключения
             raise Exception
     except Exception:
         bot.send_message(message.from_user.id, 'Будьте добры, цифрами\n'

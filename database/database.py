@@ -12,6 +12,7 @@ def recording_history_in_json(id) -> None:
      :param id: int
      :return: None"""
     user = User.get_user(id)
+    # TODO в данном месте она не используется вы ее объявляете ниже
     work_data = {}
     with open('data_json.json', 'r') as file:
         work_data = json.load(file)
@@ -27,6 +28,7 @@ def recording_history_in_json(id) -> None:
     else:
         work_data[id] = [{str(datetime.datetime.now()): {'mode': user.mode,
                                                 'hotel': [hotel['name'] for hotel in user.total_data_hotel]}}]
+        # TODO этот кусок кода явно повторяется его можно вынести в функцию
         with open('data_json.json', 'w') as file:
             json.dump(work_data, file, indent=4)
 
@@ -36,10 +38,11 @@ def output_history_in_json(call: CallbackQuery) -> None:
      а так же для вывода информации юзеру.
      :param call: CallbackQuery
      :return: None"""
+    # TODO код сломается у меня он не запуститься
+    # TODO пути должны быть относительные + \\ заменить на / или использовать метод который сам подставит нужные
     with open('C:\\Users\\Wolfich\\PycharmProjects\\Diplom_telegram_bot\\data_json.json', 'r') as file:
         data_history = json.load(file)
     if str(call.from_user.id) in data_history:
-
 
         for keys, value in enumerate(data_history[str(call.from_user.id)]):
             bot.send_message(call.from_user.id, f'Дата и время: {[index for index in value.keys()][0]}\n'

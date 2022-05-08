@@ -11,9 +11,9 @@ def bestdeal(message: Message) -> None:
     :param message: Message
     :return: None"""
     logger.info(message)
+    # TODO нужно икранировать \
     bot.send_message(message.chat.id, 'Введите диапазон цен\nпример(0 100\ 0 - 100):')
     bot.register_next_step_handler(message, checks_the_price_range)
-
 
 
 
@@ -30,10 +30,10 @@ def checks_the_price_range(message: Message) -> None:
                 result_price_range.remove(check)
         if len(result_price_range) != 2:
             logger.info(result_price_range)
-
+            # TODO при такой логике это рейз в самого себя, нужно разносить по разным объектам сам рейз и отлов
             raise Exception
         logger.info(result_price_range)
-
+    # TODO базовые исключения не ловим и не выбрасываем
     except Exception:
         bot.send_message(message.chat.id, 'Введите диапазон цен правильно\n'
                                           'пример(0 100\ 0 - 100):')
@@ -48,7 +48,7 @@ def checks_the_price_range(message: Message) -> None:
         bot.register_next_step_handler(message, checks_the_distance_range)
 
 
-
+# TODO поправить по всему модулю после функции должно быть 2 строки
 @logger.catch()
 def checks_the_distance_range(message: Message) -> None:
     """Функция проверяет правильности ввода диапазона расстояния

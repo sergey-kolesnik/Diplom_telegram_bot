@@ -13,7 +13,9 @@ try:
             set_default_commands(bot)
             bot.infinity_polling()
     main()
+# TODO базовые не ловим пишем свои кастомные, именем даем понять что ловиться
 except Exception as error:
+    # TODO заглушек быть недолжно
     pass
 
 

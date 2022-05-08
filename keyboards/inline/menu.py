@@ -1,5 +1,6 @@
 from telebot.types import InlineKeyboardButton, InlineKeyboardMarkup
 from loader import bot
+# TODO импорты все серые они используются ?
 from loguru import logger
 from handlers import  bestdeal, lowprice_hightprice
 from utils.properties_list import properties
@@ -14,6 +15,7 @@ def keyboard_menu(id: int) -> None:
     keyboards = InlineKeyboardMarkup(row_width=1)
     lowprice = InlineKeyboardButton(text='топ самых дешёвых отелей в городе', callback_data='lowprice')
     highprice = InlineKeyboardButton(text='топ самых дорогих отелей в городе', callback_data='highprice')
+    # TODO не должно быть подчеркиваний
     bestdeal = InlineKeyboardButton(text='наиболее подходящих по цене и расположению от центра',
                                     callback_data='bestdeal')
     history = InlineKeyboardButton(text='узнать историю поиска', callback_data='history')
@@ -24,6 +26,7 @@ def keyboard_menu(id: int) -> None:
     bot.send_message(id, text='Выбери категорию:', reply_markup=keyboards)
 
 
+# TODO id - зарезервированная переменная
 def keyboard_photo(id: int) -> None:
     """Функция, конструкция клавиатуры из 2 кнопок, для загрузки фото отелей
     :param id: int

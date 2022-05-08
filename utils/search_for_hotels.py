@@ -22,6 +22,7 @@ def city(message: Message) -> None:
         "X-RapidAPI-Key": RAPID_API_KEY
     }
 
+    # TODO при любом гет запросе должен быть аргумент timeout и мы его должны отлавливать и логировать
     response = requests.get(url, headers=headers, params=querystring)
     pattern = r'(?<="CITY_GROUP",).+?[\]]'
     find = re.search(pattern, response.text)
@@ -32,6 +33,7 @@ def city(message: Message) -> None:
             clear_destination = re.sub(clear, '', dest_id['caption'])
             cities.append({'city_name': clear_destination, 'destination_id': dest_id['destinationId']})
     destinations = InlineKeyboardMarkup(row_width=1)
+    # TODO одчеркиваний быть не должно
     for city in cities:
         destinations.add(InlineKeyboardButton(text=city['city_name'],
                                               callback_data=int(f'{city["destination_id"]}')))

@@ -24,6 +24,7 @@ class User:
 
     @staticmethod
     def get_user(user_id: int):
+        # TODO каждому методу пишем докстринги
         if User.data_user_in_class.get(user_id) is None:
             new_user = User(user_id)
             return new_user
