@@ -17,9 +17,8 @@ def bot_start(message: Message) -> None:
     :param message: Message
     :return: None"""
     text = f'Привет {message.from_user.full_name}, меня зовут Спутник, я помогу подобрать тебе отель!'
-    # TODO лишние скобки, почему не открыли через контекстный менеджер
-    photo1 = open(('sputnik.jpg').encode('utf-8'), 'rb')
-    bot.send_photo(message.from_user.id, caption=text, photo=photo1)
+    with open('sputnik.jpg', 'rb') as photo1:
+        bot.send_photo(message.from_user.id, caption=text, photo=photo1)
     User.get_user(message.from_user.id)
 
     logger.info(message.chat.id)
@@ -134,8 +133,9 @@ def callback_menu(call: CallbackQuery) -> None:
 
     elif call.data:
         bot.answer_callback_query(callback_query_id=call.id, show_alert=False, text='ok')
-        # TODO ожидается не тот тип
         result = properties(call.data)
+        logger.info(call)
+        logger.info(call.data)
         user.total_data_hotel = result
         logger.info(user.total_data_hotel)
         logger.info(call)
