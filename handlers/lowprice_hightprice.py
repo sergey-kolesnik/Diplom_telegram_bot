@@ -2,7 +2,7 @@ from loader import bot
 from loguru import logger
 from states.class_User import User
 from keyboards.inline import menu
-from telebot.types import  CallbackQuery, Message
+from telebot.types import CallbackQuery, Message
 import re
 from handlers import bestdeal
 
@@ -60,9 +60,8 @@ def check_count_city(message: Message) -> None:
             logger.info(user.hotels_count)
 
         else:
-            # TODO применить рекомендации данные ранее про исключения
-            raise Exception
-    except Exception:
+            raise ValueError('Не корректное значение')
+    except ValueError:
         bot.send_message(message.from_user.id, 'Будьте добры, цифрами\n'
                                                'от 1 до 15:')
         bot.register_next_step_handler(message, check_count_city)
