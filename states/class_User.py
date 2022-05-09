@@ -1,15 +1,24 @@
+from typing import Any
+
+
 class User:
-    data_user_in_class = dict()
     """Класс User, каждому пользователю присваивается класс
-    user_name - имя: str
-    city_user - город: str
-    hotels_count - количество отелей: int
-    chat_id - id чата: int
-    mode - режим который выбрал user: str
-    photo - режим отправки фото:str
-     total_data_hotel - найденная база отелей: list[dict]
-     price_range - диапазон цен: list[str]
-     distanse_range - диапазон расстояния: list[str]"""
+    Args:
+        user_name: имя (srt)
+        city_user: город (str)
+        hotels_count: количество отелей (int)
+        chat_id: id чата (int)
+        mode: режим который выбрал user (str)
+        photo: режим отправки фото (str)
+        total_data_hotel: найденная база отелей (list[dict])
+        price_range: диапазон цен (list[str])
+        distance_range: диапазон расстояния (list[str])
+
+    Attributs:
+        data_user_in_class (dict): словарь в котором хранятся экземпляры класса
+        """
+    data_user_in_class = dict()
+
     def __init__(self, user_id):
         self.user_name = None
         self.city_user = None
@@ -23,13 +32,17 @@ class User:
         User.add_user(user_id, self)
 
     @staticmethod
-    def get_user(user_id: int):
-        # TODO каждому методу пишем докстринги
+    def get_user(user_id: int) -> object:
+        """Метод класса User, для того что бы создавать экземпляр класса
+         и вызывать его по прохождению сценария
+         :param user_id: int
+         :return: class User"""
         if User.data_user_in_class.get(user_id) is None:
             new_user = User(user_id)
             return new_user
         return User.data_user_in_class.get(user_id)
 
     @classmethod
-    def add_user(cls, user_id, user):
+    def add_user(cls, user_id: int, user: Any):
+        """Метод для добавления экземпляра класса в словарь"""
         cls.data_user_in_class[user_id] = user
