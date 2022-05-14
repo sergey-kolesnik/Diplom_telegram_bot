@@ -12,9 +12,9 @@ def bestdeal(message: Message) -> None:
     :return: None"""
     logger.info(message)
     # TODO нужно икранировать \
-    bot.send_message(message.chat.id, 'Введите диапазон цен\nпример(0 100\ 0 - 100):')
+    bot.send_message(message.chat.id, 'Введите диапазон цен\n'
+                                      'пример(0 100\ 0 - 100):')
     bot.register_next_step_handler(message, checks_the_price_range)
-
 
 
 def checks_the_price_range(message: Message) -> None:
@@ -112,9 +112,3 @@ def sorting_bestdeal(message: Message) -> list[dict]:
         hotels = hotels[:user.hotels_count]
         logger.info(hotels)
     return hotels
-
-
-
-
-
-

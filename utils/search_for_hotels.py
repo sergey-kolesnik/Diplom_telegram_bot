@@ -23,7 +23,7 @@ def city(message: Message) -> None:
     }
 
     # TODO при любом гет запросе должен быть аргумент timeout и мы его должны отлавливать и логировать
-    response = requests.get(url, headers=headers, params=querystring)
+    response = requests.get(url, headers=headers, params=querystring, timeout=15)
     pattern = r'(?<="CITY_GROUP",).+?[\]]'
     find = re.search(pattern, response.text)
     if find:
@@ -33,9 +33,9 @@ def city(message: Message) -> None:
             clear_destination = re.sub(clear, '', dest_id['caption'])
             cities.append({'city_name': clear_destination, 'destination_id': dest_id['destinationId']})
     destinations = InlineKeyboardMarkup(row_width=1)
-    # TODO одчеркиваний быть не должно
-    for city in cities:
-        destinations.add(InlineKeyboardButton(text=city['city_name'],
-                                              callback_data=int(f'{city["destination_id"]}')))
+
+    for town in cities:
+        destinations.add(InlineKeyboardButton(text=town['city_name'],
+                                              callback_data=int(f'{town["destination_id"]}')))
 
     bot.send_message(message.from_user.id, 'Уточните, пожалуйста:', reply_markup=destinations)

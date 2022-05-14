@@ -1,11 +1,10 @@
 import requests
 from config_data.config import RAPID_API_KEY
 from loguru import logger
-
 import json
 
 
-def properties(id_region: int) -> list[dict]:
+def properties(id_region: str) -> list[dict]:
     """Функция для поиска отелей в конкретно выбранном регионе
     :param id_region: int
     :return: list[dict]"""
@@ -28,7 +27,8 @@ def properties(id_region: int) -> list[dict]:
     }
 
     # TODO при лебом гет запросе должне быть передан аргумент timeout и мы его должны отлавливать и логировать
-    response = requests.request("GET", url, headers=headers, params=querystring)
+
+    response = requests.request("GET", url, headers=headers, params=querystring, timeout=15)
 
     suggestions = json.loads(response.text)
     data = suggestions['data']['body']['searchResults']['results']
@@ -44,7 +44,7 @@ def properties(id_region: int) -> list[dict]:
                                'star': int(index['starRating']),
                                'photo': index['optimizedThumbUrls']['srpDesktop']})
         except KeyError:
-            # TODO заглушек быть нге должно
-            pass
+            logger.error(index)
+            continue
     logger.info(data_hotel)
     return data_hotel

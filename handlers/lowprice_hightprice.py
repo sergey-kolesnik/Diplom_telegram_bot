@@ -15,7 +15,7 @@ def sorting_lowprice_hightprice(id: int) -> list[dict]:
     user = User.get_user(id)
     data = user.total_data_hotel
     count = user.hotels_count
-    pattern = (r'[$|€]')
+    pattern = r'[$|€]'
     for price in data:
         price['price'] = int(re.sub(pattern, '', price['price']))
     if user.mode == 'топ дешевых отелей':
