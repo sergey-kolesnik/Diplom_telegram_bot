@@ -11,7 +11,6 @@ def bestdeal(message: Message) -> None:
     :param message: Message
     :return: None"""
     logger.info(message)
-    # TODO нужно икранировать \
     bot.send_message(message.chat.id, 'Введите диапазон цен\n'
                                       'пример(0 100\ 0 - 100):')
     bot.register_next_step_handler(message, checks_the_price_range)
@@ -30,11 +29,11 @@ def checks_the_price_range(message: Message) -> None:
                 result_price_range.remove(check)
         if len(result_price_range) != 2:
             logger.info(result_price_range)
-            # TODO при такой логике это рейз в самого себя, нужно разносить по разным объектам сам рейз и отлов
-            raise Exception
+            raise ValueError('не корректное значение диапазона цен')
         logger.info(result_price_range)
-    # TODO базовые исключения не ловим и не выбрасываем
-    except Exception:
+
+    except ValueError:
+        logger.error(ValueError)
         bot.send_message(message.chat.id, 'Введите диапазон цен правильно\n'
                                           'пример(0 100\ 0 - 100):')
         bot.register_next_step_handler(message, checks_the_price_range)
@@ -48,7 +47,6 @@ def checks_the_price_range(message: Message) -> None:
         bot.register_next_step_handler(message, checks_the_distance_range)
 
 
-# TODO поправить по всему модулю после функции должно быть 2 строки
 @logger.catch()
 def checks_the_distance_range(message: Message) -> None:
     """Функция проверяет правильности ввода диапазона расстояния
@@ -63,10 +61,10 @@ def checks_the_distance_range(message: Message) -> None:
         if len(result_distance_range) != 2:
             logger.info(result_distance_range)
 
-            raise Exception
+            raise ValueError('не корректное значение диапазона расстояния')
         logger.info(result_distance_range)
 
-    except Exception:
+    except ValueError:
         bot.send_message(message.chat.id, 'Введите диапазон расстояния от центра правильно в метрах\n'
                                           'пример(0 100\ 0 - 100):')
         bot.register_next_step_handler(message, checks_the_price_range)
@@ -79,10 +77,12 @@ def checks_the_distance_range(message: Message) -> None:
         user.total_data_hotel = sorting_bestdeal(message)
         try:
             if not user.total_data_hotel:
-                raise Exception
-        except Exception:
+                raise Warning('в заданном диапазоне ничего не найденно')
+        except Warning:
+            logger.error(Warning)
             bot.send_message(message.chat.id, 'В вашем диапазоне ничего не найдено, попробуйте еще раз')
             bot.register_next_step_handler(message, bestdeal)
+
         else:
             menu.keyboard_photo(message.from_user.id)
 
@@ -94,7 +94,7 @@ def sorting_bestdeal(message: Message) -> list[dict]:
     :return: list[dict]"""
     user = User.get_user(message.chat.id)
     data = user.total_data_hotel
-    pattern = (r'[$|€]')
+    pattern = r'[$|€]'
     for price in data:
         price['price'] = int(re.sub(pattern, '', price['price']))
 
