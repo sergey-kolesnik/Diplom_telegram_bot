@@ -11,7 +11,7 @@ def properties(id_region: CallbackQuery) -> list[dict]:
     :param id_region: int
     :return: list[dict]"""
     data_hotel = []
-    url = "https://hotels4.p.rapidapi.com/properties/list1234567"
+    url = "https://hotels4.p.rapidapi.com/properties/list"
 
     querystring = {"destinationId": id_region.data,
                    "pageNumber": "1",
