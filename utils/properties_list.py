@@ -48,11 +48,12 @@ def properties(id_region: CallbackQuery) -> list[dict]:
                 except KeyError:
                     logger.error(index)
 
+            logger.info(data_hotel)
+            return data_hotel
+
         else:
             raise ConnectionError('Ошибка подключения')
     except ConnectionError:
         logger.error(response.status_code)
         bot.send_message(id_region.from_user.id, 'Извините, техническая неисправность, мы уже работаем над проблемой')
-    else:
-        logger.info(data_hotel)
-        return data_hotel
+

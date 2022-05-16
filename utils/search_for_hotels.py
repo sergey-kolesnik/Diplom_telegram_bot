@@ -22,20 +22,30 @@ def city(message: Message) -> None:
         "X-RapidAPI-Key": RAPID_API_KEY
     }
 
-    # TODO при любом гет запросе должен быть аргумент timeout и мы его должны отлавливать и логировать
     response = requests.get(url, headers=headers, params=querystring, timeout=15)
-    pattern = r'(?<="CITY_GROUP",).+?[\]]'
-    find = re.search(pattern, response.text)
-    if find:
-        suggestions = json.loads(f"{{{find[0]}}}")
-        clear = r'<.*?>|</.*?>'
-        for dest_id in suggestions['entities']:
-            clear_destination = re.sub(clear, '', dest_id['caption'])
-            cities.append({'city_name': clear_destination, 'destination_id': dest_id['destinationId']})
-    destinations = InlineKeyboardMarkup(row_width=1)
 
-    for town in cities:
-        destinations.add(InlineKeyboardButton(text=town['city_name'],
-                                              callback_data=int(f'{town["destination_id"]}')))
+    try:
+        if response.status_code == requests.codes.ok:
 
-    bot.send_message(message.from_user.id, 'Уточните, пожалуйста:', reply_markup=destinations)
+            pattern = r'(?<="CITY_GROUP",).+?[\]]'
+            find = re.search(pattern, response.text)
+            if find:
+                suggestions = json.loads(f"{{{find[0]}}}")
+                clear = r'<.*?>|</.*?>'
+                for dest_id in suggestions['entities']:
+                    clear_destination = re.sub(clear, '', dest_id['caption'])
+                    cities.append({'city_name': clear_destination, 'destination_id': dest_id['destinationId']})
+            destinations = InlineKeyboardMarkup(row_width=1)
+
+            for town in cities:
+                destinations.add(InlineKeyboardButton(text=town['city_name'],
+                                                      callback_data=int(f'{town["destination_id"]}')))
+
+            bot.send_message(message.from_user.id, 'Уточните, пожалуйста:', reply_markup=destinations)
+
+        else:
+            raise ConnectionError('Ошибка подключения')
+
+    except ConnectionError:
+        logger.error(response.status_code)
+        bot.send_message(message.from_user.id, 'Извините, техническая неисправность, мы уже работаем над проблемой')
