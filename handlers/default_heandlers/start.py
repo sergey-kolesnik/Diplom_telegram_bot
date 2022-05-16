@@ -133,7 +133,7 @@ def callback_menu(call: CallbackQuery) -> None:
 
     elif call.data:
         bot.answer_callback_query(callback_query_id=call.id, show_alert=False, text='ok')
-        result = properties(call.data)
+        result = properties(call)
         logger.info(call)
         logger.info(call.data)
         user.total_data_hotel = result

@@ -32,7 +32,7 @@ class User:
         User.add_user(user_id, self)
 
     @staticmethod
-    def get_user(user_id: int) -> object:
+    def get_user(user_id: int) -> Any:
         """Метод класса User, для того что бы создавать экземпляр класса
          и вызывать его по прохождению сценария
          :param user_id: int
