@@ -3,8 +3,9 @@ from config_data.config import DEFAULT_COMMANDS
 
 
 def set_default_commands(bot):
-    # TODO дописать докстринги всем методам\функциям
+    """Функция для генерации команд бота
+    :param bot: telebot
+    :return: None"""
     bot.set_my_commands(
-        # TODO однобуквенные переменные заменить на развернутые
-        [BotCommand(*i) for i in DEFAULT_COMMANDS]
+        [BotCommand(* check) for check in DEFAULT_COMMANDS]
     )

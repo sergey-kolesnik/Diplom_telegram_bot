@@ -65,6 +65,7 @@ def check_count_city(message: Message) -> None:
         bot.send_message(message.from_user.id, 'Будьте добры, цифрами\n'
                                                'от 1 до 15:')
         bot.register_next_step_handler(message, check_count_city)
+
     else:
         if user.mode == 'по цене и расположению от центра':
             bestdeal.bestdeal(message)
