@@ -4,7 +4,7 @@ import datetime
 from loader import bot
 from telebot.types import CallbackQuery
 import os
-
+from typing import Any
 
 def recording_history_in_json(user_id) -> None:
     """Которая открывает базу данных(JSON),
@@ -24,15 +24,21 @@ def recording_history_in_json(user_id) -> None:
         work_data[str(user_id)].append({key_data_time: {'mode': user.mode,
                                                         'hotel': [hotel['name'] for hotel in user.total_data_hotel]}})
 
-        with open('data_json.json', 'w') as file:
-            json.dump(work_data, file, indent=4)
+        open_data_json(work_data)
+
     else:
         work_data[user_id] = [{str(datetime.datetime.now()): {'mode': user.mode,
                                                               'hotel': [hotel['name'] for hotel in
                                                                         user.total_data_hotel]}}]
-        # TODO этот кусок кода явно повторяется его можно вынести в функцию
-        with open('data_json.json', 'w') as file:
-            json.dump(work_data, file, indent=4)
+        open_data_json(work_data)
+
+
+def open_data_json(data: Any) -> None:
+    """Функция для открытия json файла и записи туда информации
+    :param data: Any
+    :return None"""
+    with open('data_json.json', 'w') as file:
+        json.dump(data, file, indent=4)
 
 
 def output_history_in_json(call: CallbackQuery) -> None:

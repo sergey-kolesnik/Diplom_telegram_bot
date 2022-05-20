@@ -179,6 +179,15 @@
                     "Publove @ Exmouth Arms Euston"
                 ]
             }
+        },
+        {
+            "19-05-2022 18:21:21": {
+                "mode": "\u0442\u043e\u043f \u0434\u0435\u0448\u0435\u0432\u044b\u0445 \u043e\u0442\u0435\u043b\u0435\u0439",
+                "hotel": [
+                    "Safestay London Kensington Holland Park",
+                    "Book a Bed Hostels"
+                ]
+            }
         }
     ],
     "238144912": [
@@ -268,6 +277,24 @@
                     "Plaza Inn"
                 ]
             }
+        },
+        {
+            "19-05-2022 18:21:21": {
+                "mode": "\u0442\u043e\u043f \u0434\u0435\u0448\u0435\u0432\u044b\u0445 \u043e\u0442\u0435\u043b\u0435\u0439",
+                "hotel": [
+                    "H\u00f4tel des Andelys",
+                    "Hotel Liberty"
+                ]
+            }
+        },
+        {
+            "20-05-2022 10:36:43": {
+                "mode": "\u0442\u043e\u043f \u0434\u0435\u0448\u0435\u0432\u044b\u0445 \u043e\u0442\u0435\u043b\u0435\u0439",
+                "hotel": [
+                    "Book a Bed Hostels",
+                    "Safestay London Kensington Holland Park"
+                ]
+            }
         }
     ],
     "794878552": [
@@ -328,6 +355,30 @@
                     "Hotel Focus SFO",
                     "Surf Motel",
                     "Alpha Inn & Suites"
+                ]
+            }
+        }
+    ],
+    "767210251": [
+        {
+            "2022-05-19 18:13:21.300348": {
+                "mode": "\u043f\u043e \u0446\u0435\u043d\u0435 \u0438 \u0440\u0430\u0441\u043f\u043e\u043b\u043e\u0436\u0435\u043d\u0438\u044e \u043e\u0442 \u0446\u0435\u043d\u0442\u0440\u0430",
+                "hotel": [
+                    "YHA London St Pancras - Hostel",
+                    "YHA London Central - Hostel",
+                    "PubLove @ The Green Man - Hostel",
+                    "PubLove @ The Steam Engine - Hostel",
+                    "The Bridge Hotel London",
+                    "Publove @ Exmouth Arms Euston"
+                ]
+            }
+        },
+        {
+            "19-05-2022 18:21:18": {
+                "mode": "\u0442\u043e\u043f \u0434\u0435\u0448\u0435\u0432\u044b\u0445 \u043e\u0442\u0435\u043b\u0435\u0439",
+                "hotel": [
+                    "Bedrooms near Fenway & Downtown Boston",
+                    "Plaza Inn"
                 ]
             }
         }
